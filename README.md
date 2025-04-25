@@ -8,7 +8,7 @@ A reproducible, modular pipeline to estimate surface-level PM2.5 concentrations 
 
 ---
 
-## 🛰️ Overview
+## Overview
 
 This pipeline enables real-time and retrospective monitoring of fine particulate matter (PM2.5) using high-temporal-resolution GOES-R AOD data combined with meteorological inputs from the High-Resolution Rapid Refresh (HRRR) model. It applies regionally optimized deep neural networks (DNNs) and an ensemble model to generate hourly PM2.5 estimates at 2–5 km spatial resolution.
 
@@ -21,7 +21,7 @@ This pipeline enables real-time and retrospective monitoring of fine particulate
 
 ---
 
-## 📖 Associated Publication
+## Associated Publication
 This pipeline is based on the methodology published in:
 
 > **Sayeed, A., Gupta, P., Henderson, B., Kondragunta, S., Zhang, H., & Liu, Y.** (2025).  
@@ -29,7 +29,7 @@ This pipeline is based on the methodology published in:
 > Earth and Space Science, 12(2), e2024EA004012.  
 > [https://doi.org/10.1029/2024EA004012](https://doi.org/10.1029/2024EA004012)
 
-📌 Please cite this paper when using this pipeline in your research.
+Please cite this paper when using this pipeline in your research.
 
 BibTeX Citation:
 ```bibtex
@@ -49,7 +49,7 @@ BibTeX Citation:
 
 ---
 
-## ⚙️ Setup Instructions
+## Setup Instructions
 
 ### 1. Clone the Repository
 ```bash
@@ -79,7 +79,7 @@ This will apply the regional and ensemble DNN models and output hourly results.
 
 ---
 
-## 📤 Expected Outputs
+## Expected Outputs
 
 | Folder        | Description                                                              |
 |---------------|---------------------------------------------------------------------------|
@@ -91,7 +91,7 @@ All outputs are georeferenced using latitude and longitude from the merged GOES 
 
 ---
 
-## 📂 Folder Structure
+## Folder Structure
 ```
 goes-pm25-pipeline/
 ├── download_goes.py
@@ -115,7 +115,7 @@ goes-pm25-pipeline/
 
 ---
 
-## 🔧 Dependencies
+## Dependencies
 
 All required dependencies can be installed using:
 ```bash
@@ -127,7 +127,7 @@ Key packages include:
 
 ---
 
-## 📬 Contact
+## Contact
 **Alqamah Sayeed, Ph.D.**  
 Lead – Air Quality & Health, SERVIR Science Coordination Office, NASA  
 Email: alqamah.sayeed@nasa.gov  
@@ -135,7 +135,7 @@ ORCID: [0000-0001-6898-8148](https://orcid.org/0000-0001-6898-8148)
 
 ---
 
-## 📝 License
+## License
 
 This project is licensed under the **Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License** (CC BY-NC-ND 4.0).  
 
