@@ -53,8 +53,8 @@ BibTeX Citation:
 
 ### 1. Clone the Repository
 ```bash
-git clone https://github.com/YOUR_USERNAME/goes-pm25-pipeline.git
-cd goes-pm25-pipeline
+git clone https://github.com/YOUR_USERNAME/goes-pm25-dnn.git
+cd goes-pm25-dnn
 ```
 
 ### 2. Create Conda Environment
