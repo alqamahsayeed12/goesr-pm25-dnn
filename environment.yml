@@ -1,4 +1,4 @@
-name: goes-pm25-pipeline
+name: goes-pm25-dnn
 channels:
   - conda-forge
   - defaults
