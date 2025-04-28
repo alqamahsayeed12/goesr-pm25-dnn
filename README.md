@@ -60,7 +60,7 @@ cd goes-pm25-pipeline
 ### 2. Create Conda Environment
 ```bash
 conda env create -f environment.yml
-conda activate goes-pm25-pipeline
+conda activate goes-pm25-dnn
 ```
 
 ### 3. Prepare Required Files
@@ -98,7 +98,7 @@ Arguments:
 
 ## Folder Structure
 ```
-goes-pm25-pipeline/
+goes-pm25-dnn/
 ├── src/
 │   ├── config.py
 │   ├── download.py
