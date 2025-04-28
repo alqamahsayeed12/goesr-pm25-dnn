@@ -1,0 +1,63 @@
+,Parameter Long Name and Units,Vertical Level,ZARR_LEVEL_NAME,Parameter Short Name
+1,Aeorosol Optical Thickness,Entire Atmosphere Single Layer,entire_atmosphere_single_layer,AOTK
+2,Total Precipitation (kg m-2),Surface (UTC day),surface,APCP_acc_fcst
+3,Total Snowfall (m),Surface,surface,ASNOW
+4,Convective Available Potential Energy (J kg-1),180-0 mb Above Ground,180_0mb_above_ground,CAPE
+5,Convective Available Potential Energy (J kg-1),255-0 mb Above Ground,255_0mb_above_ground,CAPE
+6,Convective Available Potential Energy (J kg-1),90-0 mb Above Ground,90_0mb_above_ground,CAPE
+7,Convective Available Potential Energy,Surface,surface,CAPE
+8,Convective Inhibition (J kg-1),180-0 mb Above Ground,180_0mb_above_ground,CIN
+9,Convective Inhibition (J kg-1),255-0 mb Above Ground,255_0mb_above_ground,CIN
+10,Convective Inhibition (J kg-1),90-0 mb Above Ground,90_0mb_above_ground,CIN
+11,Convective Inhibition (J kg-1),Surface,surface,CIN
+12,Categorical Rain,Surface,surface,CRAIN
+13,Categorical Snow,Surface,surface,CSNOW
+14,Dew Point Temperature (K),1000 mb,1000mb,DPT
+15,Dew Point Temperature (K),2-m Above Ground,2m_above_ground,DPT
+16,Dew Point Temperature (K),500 mb,500mb,DPT
+17,Dew Point Temperature (K),700 mb,700mb,DPT
+18,Dew Point Temperature (K),850 mb,850mb,DPT
+19,Dew Point Temperature (K),925 mb,925mb,DPT
+20,Vertical Velocity (m s-1),700 mb,700mb,DZDT
+21,Effective Storm Relative Helicity (m2 s-2),Surface,surface,EFHL
+22,Frictional Velocity (m s-1),Surface,surface,FRICV
+23,Geopotential Height (gpm),1000 mb,1000mb,HGT
+24,Geopotential Height (gpm),500 mb,500mb,HGT
+25,Geopotential Height (gpm),700 mb,700mb,HGT
+26,Geopotential Height (gpm),850 mb,850mb,HGT
+27,Geopotential Height (gpm),Equilibrium Level,equilibrium_level,HGT
+28,Geopotential Height (gpm),Level of Adiabatic Condensation,level_of_adiabatic_condensation_from_sfc,HGT
+29,Geopotential Height (gpm),No Level,no_level,HGT
+30,Geopotential Height (gpm),Surface,surface,HGT
+31,Planetary Boundary Layer Height,Surface,surface,HPBL
+32,Leaf Area Index,Surface,surface,LAI
+33,Land Cover,Surface,surface,LAND
+34,Low Cloud Cover (%),Low Cloud Layer,low_cloud_layer,LCDC
+35,Latent Heat Net Flux (W m-2),Surface,surface,LHTFL
+36,Hourly Maximum of Upward Vertical Velocity (m s-1),100-1000 mb Above Ground,100_1000mb_above_ground,MAXUVV
+37,U-Component of Hourly Maximum Wind (m s-1),10-m Above Ground,10m_above_ground,MAXUW_1hr_max_fcst
+38,V-Component of Hourly Maximum Wind (m s-1),10-m Above Ground,10m_above_ground,MAXVW_1hr_max_fcst
+39,Annual Minimum Vegetation Fraction,Surface,surface,MNVEG
+40,Mean Sea Level Pressure (Pa),Mean Sea Level,mean_sea_level,MSLP
+41,Moisture Availability (%),0-m Underground,0m_underground,MSTAV
+42,Annual Maximum Vegetation Fraction,Surface,surface,MXVEG
+43,Potential Temperature (K),2-m Above Ground,2m_above_ground,POT
+44,Pressure (Pa),Surface,surface,PRES
+45,Radar-based Vertically Integrated Liquid (kg/m2),Entire Atmosphere,entire_atmosphere,RADARVIL
+46,Relative Humidity (kg/kg),2-m Above Ground,2m_above_ground,RH
+47,Relative Humidity with Respect to Precipitable Water (%),Entire Atmosphere,entire_atmosphere,RHPW
+48,Surface Roughness (m),Surface,surface,SFCR
+49,Specific Humidity (kg/kg),2-m Above Ground,2m_above_ground,SPFH
+50,Total Cloud Cover (%),Boundary Layer Cloud Cover,boundary_layer_cloud_layer,TCDC
+51,Temperature (K),1000 mb,1000mb,TMP
+52,Temperature (K),2-m Above Ground,2m_above_ground,TMP
+53,Temperature (K),500 mb,500mb,TMP
+54,Temperature (K),700 mb,700mb,TMP
+55,Temperature (K),850 mb,850mb,TMP
+56,Temperature (K),925 mb,925mb,TMP
+57,Temperature (K),Surface,surface,TMP
+58,Vegetation (%),Surface,surface,VEG
+59,Vegetation Type,Surface,surface,VGTP
+60,Visibility (m),Surface,surface,VIS
+61,Vertical U-Component Shear (m s-1),0-1000 m Above Ground,0_1000m_above_ground,VUCSH
+62,Vertical V-Component Shear (m s-1),0-1000 m Above Ground,0_1000m_above_ground,VVCSH

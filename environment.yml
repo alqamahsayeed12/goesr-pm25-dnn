@@ -1,0 +1,21 @@
+name: goes-pm25-pipeline
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.10
+  - pandas
+  - numpy
+  - xarray
+  - matplotlib
+  - cartopy
+  - tensorflow
+  - keras
+  - scikit-learn
+  - requests
+  - beautifulsoup4
+  - tqdm
+  - netcdf4
+  - pip
+  - pip:
+      - pysolar
