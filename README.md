@@ -53,7 +53,7 @@ BibTeX Citation:
 
 ### 1. Clone the Repository
 ```bash
-git clone https://github.com/YOUR_USERNAME/goes-pm25-dnn.git
+git clone https://github.com/alqamahsayeed12/goes-pm25-dnn.git
 cd goes-pm25-dnn
 ```
 
