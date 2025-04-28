@@ -63,51 +63,55 @@ conda env create -f environment.yml
 conda activate goes-pm25-pipeline
 ```
 
-### 3. Download GOES Data
-Edit `download_goes.py` with your desired start and end dates.
-Then run:
-```bash
-python download_goes.py
-```
-This will create `GOES/YYYYMMDD/` folders and generate `downloaded_dates.txt`.
+### 3. Prepare Required Files
+Ensure the following are available inside the `Scalars/` folder:
+- `collocated_hrrr_on_goes.csv`
+- `hrrr_varaible_list_selected4.csv`
+- `max_min.csv`
 
-### 4. Run the Processing Pipeline
+Ensure trained models are placed under the `Models/` folder.
+
+---
+
+## Running the Pipeline
+
+Download and process GOES data using:
 ```bash
-python main.py
+python main.py --start 20210113 --end 20210113 --plot True
 ```
-This will apply the regional and ensemble DNN models and output hourly results.
+Arguments:
+- `--start`: Start date (`YYYYMMDD`)
+- `--end`: End date (`YYYYMMDD`)
+- `--plot`: Optional (`True` or `False`) to generate PM2.5 plots
 
 ---
 
 ## Expected Outputs
 
-| Folder        | Description                                                              |
-|---------------|---------------------------------------------------------------------------|
-| `OUT_NC/`     | NetCDF files with predicted PM2.5 fields for each time step              |
-| `PLOTS/`      | PNG maps visualizing surface PM2.5 for GOES timestamps                   |
-| `logs/`       | Timestamped logs capturing progress, errors, and runtime diagnostics     |
-
-All outputs are georeferenced using latitude and longitude from the merged GOES grid.
+| Folder        | Description                                                  |
+|:--------------|:--------------------------------------------------------------|
+| `OUT_NC/`     | NetCDF files with predicted PM2.5 for each time step           |
+| `PLOTS/`      | PNG visualizations comparing GOES-derived and predicted PM2.5 |
+| `GOES/`       | Downloaded raw GOES NetCDF data                               |
 
 ---
 
 ## Folder Structure
 ```
 goes-pm25-pipeline/
-├── download_goes.py
-├── main.py
-├── goes_pipeline_core.py
-├── config.py
-├── utils/
-│   ├── solar.py
-│   ├── merge.py
+├── src/
+│   ├── config.py
+│   ├── download.py
 │   ├── preprocess.py
-│   ├── models.py
-├── logs/
+│   ├── pipeline.py
+│   ├── utils.py
+├── main.py
+├── environment.yml
 ├── OUT_NC/
 ├── PLOTS/
-├── run_pipeline.sh
-├── environment.yml
+├── GOES/
+├── Models/
+├── Scalars/
 ├── README.md
 ├── LICENSE
 └── .gitignore
@@ -117,16 +121,15 @@ goes-pm25-pipeline/
 
 ## Dependencies
 
-All required dependencies can be installed using:
+Install all dependencies automatically:
 ```bash
 conda env create -f environment.yml
 ```
-Key packages include:
+Key libraries used:
 - `xarray`, `pandas`, `numpy`, `matplotlib`, `keras`, `tensorflow`
-- `cartopy`, `requests`, `beautifulsoup4`, `pysolar`
+- `cartopy`, `requests`, `beautifulsoup4`, `tqdm`, `argparse`
 
 ---
-
 ## Contact
 **Alqamah Sayeed, Ph.D.**  
 Lead – Air Quality & Health, SERVIR Science Coordination Office, NASA  
