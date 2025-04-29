@@ -17,7 +17,7 @@ def merge_GOES_helper(var_e,var_w,e,w,para):
         try:
             var_e[e]=np.nan
             var_w[w]=np.nan
-        except: print ("NAN conversion failed")
+        except: pass
     add_rows_e = np.zeros((122,2500))*np.nan
     var_e = np.concatenate((add_rows_e,var_e),axis=0)
     
