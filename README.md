@@ -102,6 +102,7 @@ goes-pm25-dnn/
 ├── src/
 │   ├── config.py
 │   ├── download.py
+│   ├── download_scalars.py
 │   ├── preprocess.py
 │   ├── pipeline.py
 │   ├── utils.py
@@ -112,9 +113,7 @@ goes-pm25-dnn/
 ├── GOES/
 ├── Models/
 ├── Scalars/
-├── README.md
-├── LICENSE
-└── .gitignore
+└── README.md
 ```
 
 ---
