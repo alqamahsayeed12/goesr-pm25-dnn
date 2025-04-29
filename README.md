@@ -132,7 +132,7 @@ Key libraries used:
 ---
 ## Contact
 **Project Lead: Pawan Gupta**  
-Co-Leads: NASA AERONET Program
+Co-Lead: AERONET Program, NASA  
 Email: pawan.gupta@nasa.gov  
 
 **Developer: Alqamah Sayeed, Ph.D.**  
