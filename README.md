@@ -133,6 +133,7 @@ Key libraries used:
 **Project Lead: Pawan Gupta**  
 Co-Lead: AERONET Program, NASA  
 Email: pawan.gupta@nasa.gov  
+ORCID: [0000-0002-0979-472X](https://orcid.org/0000-0002-0979-472X)
 
 **Developer: Alqamah Sayeed, Ph.D.**  
 Lead – Air Quality & Health, SERVIR Science Coordination Office, NASA  
