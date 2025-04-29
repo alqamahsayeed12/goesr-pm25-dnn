@@ -54,7 +54,7 @@ BibTeX Citation:
 ### 1. Clone the Repository
 ```bash
 git clone https://github.com/alqamahsayeed12/goesr-pm25-dnn.git
-cd goes-pm25-dnn
+cd goesr-pm25-dnn
 ```
 
 ### 2. Create Conda Environment
