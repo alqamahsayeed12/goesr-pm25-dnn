@@ -131,7 +131,10 @@ Key libraries used:
 
 ---
 ## Contact
-**Alqamah Sayeed, Ph.D.**  
+**Project Lead: Pawan Gupta**  
+Email: pawan.gupta@nasa.gov  
+
+**Developer: Alqamah Sayeed, Ph.D.**  
 Lead – Air Quality & Health, SERVIR Science Coordination Office, NASA  
 Email: alqamah.sayeed@nasa.gov  
 ORCID: [0000-0001-6898-8148](https://orcid.org/0000-0001-6898-8148)
