@@ -25,11 +25,25 @@ import warnings
 import argparse
 from tqdm import tqdm
 import time
+from src.download_scalars import download_from_gdrive
 
 # Suppress warnings for clean output
 warnings.filterwarnings('ignore')
 
 if __name__ == "__main__":
+    
+    #Download Scalar files from Google Drive
+    
+    download_from_gdrive(
+    file_id="1rEjbbX63IBbt_GAOZFvt3a76jd8HLFBz",  # Replace with your actual file ID
+    filename="base_df.csv")
+    
+    
+    download_from_gdrive(
+    file_id="1YDaW0cFO2JReIJjZaUjH0OiMS9IB93yD",  # Replace with your actual file ID
+    filename="collocated_hrrr_on_goes.csv")
+
+    
     # Parse command-line arguments
     parser = argparse.ArgumentParser(description="GOES PM2.5 Estimation Pipeline")
     parser.add_argument('--start', type=str, required=True, help='Start date in YYYYMMDD format')
@@ -51,7 +65,7 @@ if __name__ == "__main__":
     download.download_goes(start, end)
 
     # Find downloaded GOES NetCDF files
-    file_list = sorted(glob.glob(str(PATHS['goes_folder'] / f'*/pm25_gwr_aod_exp50_{start}*')))
+    file_list = sorted(glob.glob(str(PATHS['goes_folder'] / f'*/pm25_gwr_aod_exp50_{start}*')))[:1]
 
     # Load collocation file between HRRR and GOES grids
     collocated = pd.read_csv(str(PATHS['scalar_folder'])+"/collocated_hrrr_on_goes.csv", index_col=0)

@@ -7,6 +7,10 @@ dependencies:
   - pandas
   - numpy
   - xarray
+  - zarr
+  - fsspec
+  - s3fs
+  - gdown
   - matplotlib
   - cartopy
   - tensorflow
