@@ -208,13 +208,13 @@ def run_pipeline(goes_fn, collocated, hrrr_vars, var_index, feature_columns, fea
                 try:
                     fn = str(i).zfill(4)+"_"+str(j).zfill(4)
                     model_path = str(PATHS['model_folder']) + fn + "_relu_best_dnn1.h5"
-                    model_loaded = keras.models.load_model(model_path, custom_objects={'customLoss1': custom_loss1})
+                    model_loaded = keras.models.load_model(model_path,compile=False, custom_objects={'customLoss1': custom_loss1})
                 except:
-                    model_loaded = keras.models.load_model(str(PATHS['model_folder'])+"0000_0720_relu_best_dnn1.h5", custom_objects={'customLoss1': custom_loss1})
+                    model_loaded = keras.models.load_model(str(PATHS['model_folder'])+"0000_0720_relu_best_dnn1.h5",compile=False, custom_objects={'customLoss1': custom_loss1})
                 DF['DNN_'+str(kk).zfill(2)] = model_loaded.predict(normalize(DF[feature_columns], mx[feature_columns], mn[feature_columns]), batch_size=4096, verbose=0)
 
             #### Load Ensemble model
-            ensemble_model = keras.models.load_model(str(PATHS['model_folder'])+'_dnn_ensemble_v1_4.h5', custom_objects={'customLoss1': custom_loss1})
+            ensemble_model = keras.models.load_model(str(PATHS['model_folder'])+'_dnn_ensemble_v1_4.h5',compile=False, custom_objects={'customLoss1': custom_loss1})
             DF['DNN_en'] = ensemble_model.predict(normalize(DF[feature_columns2], mx[feature_columns2], mn[feature_columns2]), batch_size=4096, verbose=0)
 
             ### Apply mask to remove extra pixel due to averaging kerenel            
