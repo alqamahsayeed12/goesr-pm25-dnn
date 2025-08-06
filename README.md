@@ -12,6 +12,11 @@ A reproducible, modular pipeline to estimate surface-level PM2.5 concentrations 
 
 This pipeline enables real-time and retrospective monitoring of fine particulate matter (PM2.5) using high-temporal-resolution GOES-R AOD data combined with meteorological inputs from the High-Resolution Rapid Refresh (HRRR) model. It applies regionally optimized deep neural networks (DNNs) and an ensemble model to generate hourly PM2.5 estimates at 2–5 km spatial resolution.
 
+
+<img width="1280" height="1050" alt="image" src="https://github.com/user-attachments/assets/89407db5-1e59-4e30-80c7-157559149ed4" />
+
+
+
 ### Key Features
 - Near real-time PM2.5 estimation using GOES ABI AOD
 - Integration of HRRR-based meteorological features (RH, temperature, wind speed)
