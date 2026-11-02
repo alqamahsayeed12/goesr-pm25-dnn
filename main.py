@@ -31,11 +31,18 @@ from src.download_scalars import download_from_gdrive
 warnings.filterwarnings('ignore')
 
 if __name__ == "__main__":
+
+    # Parse arguments before downloading inputs (including for --help).
+    parser = argparse.ArgumentParser(description="GOES PM2.5 Estimation Pipeline")
+    parser.add_argument('--start', type=str, required=True, help='Start date in YYYYMMDD format')
+    parser.add_argument('--end', type=str, required=True, help='End date in YYYYMMDD format')
+    parser.add_argument('--plot', type=str, default='False', help='Enable plotting of results (True/False)')
+    args = parser.parse_args()
     
     #Download Scalar files from Google Drive
     
     download_from_gdrive(
-    file_id="1rEjbbX63IBbt_GAOZFvt3a76jd8HLFBz",  # Replace with your actual file ID
+    file_id="1h9vT8OkTY_11WPXJ2eZQv9aG0dgS2s9B",
     filename="base_df.csv")
     
     
@@ -44,13 +51,6 @@ if __name__ == "__main__":
     filename="collocated_hrrr_on_goes.csv")
 
     
-    # Parse command-line arguments
-    parser = argparse.ArgumentParser(description="GOES PM2.5 Estimation Pipeline")
-    parser.add_argument('--start', type=str, required=True, help='Start date in YYYYMMDD format')
-    parser.add_argument('--end', type=str, required=True, help='End date in YYYYMMDD format')
-    parser.add_argument('--plot', type=str, default='False', help='Enable plotting of results (True/False)')
-    args = parser.parse_args()
-
     # Load paths from configuration
     from src.config import PATHS
 
@@ -66,6 +66,8 @@ if __name__ == "__main__":
 
     # Find downloaded GOES NetCDF files
     file_list = sorted(glob.glob(str(PATHS['goes_folder'] / f'*/pm25_gwr_aod_exp50_{start}*')))[:1]
+    if not file_list:
+        raise FileNotFoundError(f"No GOES input files found for {start} in {PATHS['goes_folder']}")
 
     # Load collocation file between HRRR and GOES grids
     collocated = pd.read_csv(str(PATHS['scalar_folder'])+"/collocated_hrrr_on_goes.csv", index_col=0)

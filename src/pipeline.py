@@ -135,25 +135,33 @@ def run_pipeline(goes_fn, collocated, hrrr_vars, var_index, feature_columns, fea
                         del a,ds
                         gc.collect()              
                     except Exception as e:                
-                        print (str(e))
+                        raise RuntimeError(f"Failed to retrieve HRRR variable {var} from {url}") from e
                 
                 #%% ###--- Add date and time to hrrr dataframe
                 hrrr["Date_UTC"] = pd.to_datetime(date2)
                 hrrr["Date_UTC"] = hrrr["Date_UTC"] +pd.to_timedelta(hrrr.time.values+12,unit="H")
+
+                if hrrr.empty:
+                    raise ValueError(f"HRRR data for {date2} contains no matching grid points")
                 
                 ###--- Save the HRRR file
-                hrrr.to_csv(hrrr_file_path)#process hrrr
+                cache_temp_path = hrrr_file_path + ".part"
+                try:
+                    hrrr.to_csv(cache_temp_path)
+                    os.replace(cache_temp_path, hrrr_file_path)
+                finally:
+                    if os.path.exists(cache_temp_path):
+                        os.remove(cache_temp_path)
                 print ("Downloading HRRR Done...")
-                return
             else:
                 print("HRRR file found: Skip Downloading.")
-                
-
-            hrrr = pd.read_csv(hrrr_file_path, parse_dates=True, index_col=0)
+                hrrr = pd.read_csv(hrrr_file_path, parse_dates=True, index_col=0)
             
             ###--- Preprocess HRRR dataframe
             hrrr['Date_UTC'] = pd.to_datetime(hrrr.Date_UTC,format="mixed")
             hrrr = hrrr[hrrr.Date_UTC==date]
+            if hrrr.empty:
+                raise ValueError(f"HRRR data contains no records for {date}")
             hrrr = hrrr.rename(columns={'projection_y_coordinate':"hrrr_i",
                                       'projection_x_coordinate':"hrrr_j"})
             hrrr["Wind Speed"] = (hrrr[ 'MAXUW_1hr_max_fcst']**2 + hrrr['MAXVW_1hr_max_fcst']**2)**0.5
@@ -169,6 +177,8 @@ def run_pipeline(goes_fn, collocated, hrrr_vars, var_index, feature_columns, fea
             ###--- Merege HRRR on earlier created dataframe
             ###--- This will only merge collocated grids
             DF = pd.merge(DF,hrrr,how="inner",on=["hrrr_i","hrrr_j","Date_UTC"])
+            if DF.empty:
+                raise ValueError(f"No collocated GOES and HRRR records for {date}")
             
             ###--- Find the index of 
             idx = np.where(np.isnan(collocated.hrrr_i))[0]
@@ -200,7 +210,7 @@ def run_pipeline(goes_fn, collocated, hrrr_vars, var_index, feature_columns, fea
                                     'abi_aod':'abi_aod_ge'
                                     })
             ###--- Calculate SZA using parallization
-            DF['SZA'] = szafunc(date, DF['Lat'], DF['Lon'])
+            DF['SZA'] = szafunc(date, dLongitude=DF['Lon'], dLatitude=DF['Lat'])
             
 
             for kk in range(len(CONSTANTS['idxI'])):
@@ -259,23 +269,27 @@ def run_pipeline(goes_fn, collocated, hrrr_vars, var_index, feature_columns, fea
             out_xarray.coords['lon_com'].attrs["units"] = 'degree_east'
 
             ###--- Save the dataset as netCDF file
-            out_xarray.to_netcdf(OUTPUT_NC_Folder+OUTPUT_NC_FILENAME, mode='w', format='NETCDF4',
+            output_path = OUTPUT_NC_Folder + OUTPUT_NC_FILENAME
+            output_temp_path = output_path + ".part"
+            try:
+                out_xarray.to_netcdf(output_temp_path, mode='w', format='NETCDF4',
                                  encoding = {
                                       'lat_com': {"_FillValue":None,'zlib': True, 'dtype':'float32'},
                                               'lon_com': {"_FillValue":None,'zlib': True,'dtype':'float32'},
                                               'pm25sat_com':{"_FillValue":-999,'zlib': True,'dtype':'float32'},
                                               'pm25gwr_dnn_com_ensemble':{"_FillValue":-999,'zlib': True,'dtype':'float32'},
                                              })
+                os.replace(output_temp_path, output_path)
+            finally:
+                if os.path.exists(output_temp_path):
+                    os.remove(output_temp_path)
             
             
             print(f"Saved output: {OUTPUT_NC_FILENAME}")
 
 
         except Exception as e:
-            import sys
-            exc_type, exc_obj, exc_tb = sys.exc_info()
-            print(exc_tb.tb_lineno)
-            print(e)
+            raise RuntimeError(f"Failed to process GOES file {goes_fn}") from e
             
     if plot:
         out_xarray = xr.open_dataset(OUTPUT_NC_Folder+OUTPUT_NC_FILENAME)

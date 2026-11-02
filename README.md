@@ -70,6 +70,7 @@ conda activate goes-pm25-dnn
 
 ### 3. Prepare Required Files
 Ensure the following are available inside the `Scalars/` folder:
+- `base_df.csv` (downloaded automatically from Google Drive)
 - `collocated_hrrr_on_goes.csv`
 - `hrrr_varaible_list_selected4.csv`
 - `max_min.csv`
@@ -88,6 +89,18 @@ Arguments:
 - `--start`: Start date (`YYYYMMDD`)
 - `--end`: End date (`YYYYMMDD`)
 - `--plot`: Optional (`True` or `False`) to generate PM2.5 plots
+
+The current entry point intentionally processes only the first matching file on
+the start date. A missing HRRR cache is downloaded and used in the same run.
+Required-input and processing failures stop the command with a nonzero exit
+status; plotting begins only after processing succeeds. Cache and NetCDF files
+are saved through temporary files so failed writes are not reused as complete
+outputs.
+
+Run the regression checks with:
+```bash
+python -m unittest discover -s tests -v
+```
 
 ---
 

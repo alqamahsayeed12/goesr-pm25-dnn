@@ -21,12 +21,14 @@ def download_from_gdrive(file_id, filename="file.csv"):
     scalar_path.mkdir(parents=True, exist_ok=True)
     output_path = scalar_path / filename
 
-    if not output_path.exists():
+    if not output_path.is_file() or output_path.stat().st_size == 0:
         url = f"https://drive.google.com/uc?id={file_id}"
         try:
             print(f"Downloading {filename} from Google Drive...")
-            gdown.download(url, str(output_path), quiet=False)
+            result = gdown.download(url, str(output_path), quiet=False)
+            if result is None or not output_path.is_file() or output_path.stat().st_size == 0:
+                raise RuntimeError("Download did not produce a nonempty file")
         except Exception as e:
-            print(f"Failed to download {filename}: {e}")
+            raise RuntimeError(f"Failed to download required input {filename} from {url}") from e
     else:
         print(f"{filename} already exists at Scalars/")
